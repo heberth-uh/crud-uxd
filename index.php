@@ -25,10 +25,12 @@ $con->close();
 </head>
 
 <body>
-    <div class="container">
-        <div class="columns">
-            <div class="column is-half">
+    <div class="container is-fullhd">
+        <div class="columns is-centered">
+            <div class="column is-four-fifths">
                 <h1 class="title">Lista de usuarios</h1>
+                <a href="create.php" class="button is-link">Agregar datos</a>
+                <div class="table-container">
                 <table class="table">
                     <thead>
                         <tr>
@@ -79,6 +81,7 @@ $con->close();
 
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>
