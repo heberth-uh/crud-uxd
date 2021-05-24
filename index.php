@@ -21,7 +21,7 @@ $con->close();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-    <title>lista de usuarios</title>
+    <title>Lista de usuarios</title>
 </head>
 
 <body>
@@ -30,6 +30,7 @@ $con->close();
             <div class="column is-four-fifths">
                 <h1 class="title">Lista de usuarios</h1>
                 <a href="create.php" class="button is-link">Agregar datos</a>
+
                 <div class="table-container">
                 <table class="table">
                     <thead>
