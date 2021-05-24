@@ -1,31 +1,28 @@
 <?php
-    $servidor="localhost";
-    $username='root';
-    $password='';
-    $database="ejemplo";
+    $servidor = "4.tcp.ngrok.io:18099";
+    $username = 'user_test_persona';
+    $password = '12345678';
+    $database = "PERSONAS_BD";
     //conexión a mysql
-    $con=new mysqli($servidor, $username, $password, $database);
-    //consulta mysql
+    $con = new mysqli($servidor, $username, $password, $database);
 
-    if(isset($_POST['nombres']) && !empty($_POST['nombres'])){
-        $nom=$_POST['nombres'];
-        $ap=$_POST['apellidos'];
-        $email=$_POST['email'];
-        $tel=$_POST['telefono'];
-    
-        $consulta="insert into usuarios (nombres,apellidos,email,telefono)
-                    values('$nom','$ap','$email','$tel')";
-        //echo $consulta;
-        //ejecutar consulta
-        if($con->query($consulta)===TRUE){
-            $notif="el registro de usuario fue exitoso";
+    if(isset($_POST['name']) && !empty($_POST['name'])){
+        // $consulta="insert into persona (name,position,location,industry,income,age,marital_status,goals,needs,interests,wants,fears,story,tools)
+        //             values('".$_POST['name']."','".$_POST['position']."','".$_POST['location']."',
+        //             '".$_POST['industry']."','".$_POST['income']."','".$_POST['income']."','".$_POST['age']."',
+        //             '".$_POST['marital_status']."','".$_POST['goals']."','".$_POST['needs']."','".$_POST['interests']."',
+        //             '".$_POST['wants']."','".$_POST['fears']."','".$_POST['story']."','".$_POST['tools']."' ";
+        
+        $consulta="INSERT INTO persona (name,position,location)
+                    VALUES ('".$_POST["name"]."','".$_POST["position"]."','".$_POST["location"]."'); ";
+
+        if($con->query($consulta) === TRUE){
+            $notif="El registro de usuario fue exitoso";
         }else{
             $notif="Hubo un error en el proceso de registro: ".$con->error;
         }    
     }
     
-       
-    //cerrar conexión
     $con->close();
 ?>
 <!DOCTYPE html>
@@ -57,11 +54,20 @@
             ?>
             <div class="box">
                 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                    <input class="input is-primary" type="text" placeholder="nombres" name="nombres" required>
-                    <input class="input is-primary" type="text" placeholder="apellidos" name="apellidos" required>
-                    <input class="input is-primary" type="email" placeholder="email" name="email" required>
-                    <input class="input is-primary" type="number" placeholder="telefono" name="telefono" required>
-                   
+                <input class="input is-primary" type="text" placeholder="name" name="name" required>
+                <input class="input is-primary" type="text" placeholder="position" name="position" required>
+                <input class="input is-primary" type="text" placeholder="location" name="location" required>
+                <input class="input is-primary" type="text" placeholder="industry" name="industry" required>
+                <input class="input is-primary" type="text" placeholder="income" name="income" required>
+                <input class="input is-primary" type="text" placeholder="age" name="age" required>
+                <input class="input is-primary" type="text" placeholder="marital_status" name="marital_status" required>
+                <input class="input is-primary" type="text" placeholder="goals" name="goals" required>
+                <input class="input is-primary" type="text" placeholder="needs" name="needs" required>
+                <input class="input is-primary" type="text" placeholder="interests" name="interests" required>
+                <input class="input is-primary" type="text" placeholder="fears" name="fears" required>
+                <input class="input is-primary" type="text" placeholder="story" name="story" required>
+                <input class="input is-primary" type="text" placeholder="tools" name="tools" required>
+
                     <div class="field is-grouped">
                     <div class="control">
                         <button class="button is-link">guardar usuario</button>
