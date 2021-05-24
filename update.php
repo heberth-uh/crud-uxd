@@ -1,35 +1,45 @@
 <?php
-    $servidor="localhost";
-    $username='root';
-    $password='';
-    $database="ejemplo";
+    $servidor="4.tcp.ngrok.io:11945";
+    $username='user_test_persona';
+    $password='12345678';
+    $database="PERSONAS_BD";
     //conexión a mysql
     $con=new mysqli($servidor, $username, $password, $database);
-
     if (isset($_GET['id'])){
-        $idProyecto=$_GET['id'];
+        $id=$_GET['id'];
     }else if(isset($_POST['id'])){
-        $idProyecto=$_POST['id'];
+        $id=$_POST['id'];
+        header("Location: update.php?id=".$id);
     }else{
         die("No existe el id del proyecto solicitado");
     }
     //consulta mysql
-    $consulta="select * from usuarios where id=$idProyecto";
+    $consulta="SELECT * from persona where id=$id";
     //ejecutar consulta
     $resultado=$con->query($consulta);
     $us=$resultado->fetch_assoc();
 
     //consulta mysql
-    if(isset($_POST['nombres']) && !empty($_POST['nombres'])){
-        $nom=$_POST['nombres'];
-        $ap=$_POST['apellidos'];
-        $email=$_POST['email'];
-        $tel=$_POST['telefono'];
-    
-        $consulta="update usuarios 
-                    set nombres='$nom', apellidos='$ap',email='$email',telefono='$tel'
-                    where id=$idProyecto";
-        //echo $consulta;
+    if(isset($_POST['name']) && !empty($_POST['name'])){
+        $consulta="UPDATE persona 
+                    set name='" . $_POST["name"] ."',
+                    position='" . $_POST["position"] ."',
+                    location='" . $_POST["location"] ."',
+                    industry='" . $_POST["industry"] ."',
+                    income='" . $_POST["income"] ."',
+                    age='" . $_POST["age"] ."',
+                    marital_status='" . $_POST["marital_status"] ."',
+                    goals='" . $_POST["goals"] ."',
+                    needs='" . $_POST["needs"] ."',
+                    interests='" . $_POST["interests"] ."',
+                    wants='" . $_POST["wants"] ."',
+                    fears='" . $_POST["fears"] ."',
+                    story='" . $_POST["story"] ."',
+                    tools='" . $_POST["tools"] ."',
+                    social_networks='" . $_POST["social_networks"] ."',
+                    brands='" . $_POST["brands"] ."'
+                    where id='" . $_POST["id"] ."'";
+        echo $consulta;
         //ejecutar consulta
         if($con->query($consulta)===TRUE){
             $notif="el registro de usuario fue exitoso";
@@ -71,11 +81,20 @@
             ?>
             <div class="box">
                 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                    <input class="input is-primary" type="text" placeholder="nombres" name="nombres" value="<?php echo $us['nombres'] ?>" required>
-                    <input class="input is-primary" type="text" placeholder="apellidos" name="apellidos" value="<?php echo $us['apellidos'] ?>" required>
-                    <input class="input is-primary" type="email" placeholder="email" name="email" value="<?php echo $us['email'] ?>" required>
-                    <input class="input is-primary" type="number" placeholder="telefono" name="telefono" value="<?php echo $us['telefono'] ?>" required>
-                    <input type="hidden" name="id" value="<?php echo $us['id'] ?>">
+                    <input class="input is-primary" type="text" placeholder="name" name="name" required value="<?php echo $us['name']?>">
+                    <input class="input is-primary" type="text" placeholder="position" name="position" required value="<?php echo $us['position']?>">
+                    <input class="input is-primary" type="text" placeholder="location" name="location" required value="<?php echo $us['location']?>">
+                    <input class="input is-primary" type="text" placeholder="industry" name="industry" required value="<?php echo $us['industry']?>">
+                    <input class="input is-primary" type="text" placeholder="income" name="income" required value="<?php echo $us['income']?>">
+                    <input class="input is-primary" type="text" placeholder="age" name="age" required value="<?php echo $us['age']?>">
+                    <input class="input is-primary" type="text" placeholder="marital_status" name="marital_status" required value="<?php echo $us['marital_status']?>">
+                    <input class="input is-primary" type="text" placeholder="goals" name="goals" required value="<?php echo $us['goals']?>">
+                    <input class="input is-primary" type="text" placeholder="needs" name="needs" required value="<?php echo $us['needs']?>">
+                    <input class="input is-primary" type="text" placeholder="interests" name="interests" required value="<?php echo $us['interests']?>">
+                    <input class="input is-primary" type="text" placeholder="fears" name="fears" required value="<?php echo $us['fears']?>">
+                    <input class="input is-primary" type="text" placeholder="story" name="story" required value="<?php echo $us['story']?>">
+                    <input class="input is-primary" type="text" placeholder="tools" name="tools" required value="<?php echo $us['tools']?>">
+                    <input type="hidden" name="id" value="<?php echo $id?>">
                     <div class="field is-grouped">
                     <div class="control">
                         <button class="button is-link">Actualizar usuario</button>
