@@ -26,8 +26,8 @@ $con->close();
 
 <body>
     <div class="container">
-        <div class="columns is-centered">
-            <div class="column is-full">
+        <div class="columns">
+            <div class="column is-half">
                 <h1 class="title">Lista de usuarios</h1>
                 <table class="table">
                     <thead>
@@ -69,6 +69,8 @@ $con->close();
                                 <td><?php echo $row['fears'] ?></td>
                                 <td><?php echo $row['story'] ?></td>
                                 <td><?php echo $row['tools'] ?></td>
+                                <td><?php echo $row['social_networks'] ?></td>
+                                <td><?php echo $row['brands'] ?></td>
                                 <td><a href="readDetalle.php?id=<?php echo $row['id'] ?>">Ver</a> | <a href="update.php?id=<?php echo $row['id'] ?>">Editar</a> | <a href="delete.php?id=<?php echo $row['id'] ?>">Eliminar</a></td>
                             </tr>
                         <?php
