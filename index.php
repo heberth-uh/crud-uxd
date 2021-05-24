@@ -1,12 +1,12 @@
 <?php
-$servidor = "localhost";
-$username = 'root';
-$password = '';
-$database = "ejemplo";
+$servidor = "4.tcp.ngrok.io:18099";
+$username = 'user_test_persona';
+$password = '12345678';
+$database = "PERSONAS_BD";
 //conexión a mysql
 $con = new mysqli($servidor, $username, $password, $database);
 //consulta mysql
-$consulta = "select * from usuarios";
+$consulta = "select * from persona";
 //ejecutar consulta
 $resultados = $con->query($consulta);
 
@@ -32,11 +32,22 @@ $con->close();
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Email</th>
-                            <th>Teléfono</th>
-                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Posición</th>
+                            <th>Localidad</th>
+                            <th>Industria</th>
+                            <th>Salario</th>
+                            <th>Edad</th>
+                            <th>Estado civil</th>
+                            <th>Metas</th>
+                            <th>Necesidades</th>
+                            <th>Intereses</th>
+                            <th>Deseos</th>
+                            <th>Miedos</th>
+                            <th>historia</th>
+                            <th>Herramientas que usa</th>
+                            <th>Redes Sociales</th>
+                            <th>Marcas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,10 +55,20 @@ $con->close();
                         while ($row = $resultados->fetch_assoc()) {
                         ?>
                             <tr>
-                                <td><?php echo $row['nombres'] ?></td>
-                                <td><?php echo $row['apellidos'] ?></td>
-                                <td><?php echo $row['email'] ?></td>
-                                <td><?php echo $row['telefono'] ?></td>
+                                <td><?php echo $row['name'] ?></td>
+                                <td><?php echo $row['position'] ?></td>
+                                <td><?php echo $row['location'] ?></td>
+                                <td><?php echo $row['industry'] ?></td>
+                                <td><?php echo $row['income'] ?></td>
+                                <td><?php echo $row['age'] ?></td>
+                                <td><?php echo $row['marital_status'] ?></td>
+                                <td><?php echo $row['goals'] ?></td>
+                                <td><?php echo $row['needs'] ?></td>
+                                <td><?php echo $row['interests'] ?></td>
+                                <td><?php echo $row['wants'] ?></td>
+                                <td><?php echo $row['fears'] ?></td>
+                                <td><?php echo $row['story'] ?></td>
+                                <td><?php echo $row['tools'] ?></td>
                                 <td><a href="readDetalle.php?id=<?php echo $row['id'] ?>">Ver</a> | <a href="update.php?id=<?php echo $row['id'] ?>">Editar</a> | <a href="delete.php?id=<?php echo $row['id'] ?>">Eliminar</a></td>
                             </tr>
                         <?php
