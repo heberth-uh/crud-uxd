@@ -26,13 +26,13 @@ $con->close();
 
 <body>
     <div class="container">
-        <div class="columns">
-            <div class="column is-half is-offset-one-quarter">
+        <div class="columns is-centered">
+            <div class="column is-full">
                 <h1 class="title">Lista de usuarios</h1>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Email</th>
                             <th>Teléfono</th>
