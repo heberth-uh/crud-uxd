@@ -8,10 +8,10 @@ $con = new mysqli($servidor, $username, $password, $database);
 
 if (isset($_POST['name']) && !empty($_POST['name'])) {
     $consulta = "INSERT INTO persona (name,position,location,industry,income,age,marital_status,goals,needs,interests,wants,fears,story,tools,social_networks,brands)
-                    VALUES ('" . $_POST["name"] . "','" . $_POST["position"] . "','" . $_POST["location"]. "',
-                    '" . $_POST["industry"] ."','" . $_POST["income"] ."','" . $_POST["age"] ."',
-                    '" . $_POST["marital_status"] ."','" . $_POST["goals"] ."','" . $_POST["needs"] ."','" . $_POST["interests"] ."',
-                    '" . $_POST["wants"] ."','" . $_POST["fears"] ."','" . $_POST["story"] ."','" . $_POST["tools"] ."','" . $_POST["social_networks"] ."','" . $_POST["brands"] ."'); ";
+                    VALUES ('" . $_POST["name"] . "','" . $_POST["position"] . "','" . $_POST["location"] . "',
+                    '" . $_POST["industry"] . "','" . $_POST["income"] . "','" . $_POST["age"] . "',
+                    '" . $_POST["marital_status"] . "','" . $_POST["goals"] . "','" . $_POST["needs"] . "','" . $_POST["interests"] . "',
+                    '" . $_POST["wants"] . "','" . $_POST["fears"] . "','" . $_POST["story"] . "','" . $_POST["tools"] . "','" . $_POST["social_networks"] . "','" . $_POST["brands"] . "'); ";
 
     if ($con->query($consulta) === TRUE) {
         $notif = "El registro de usuario fue exitoso";
@@ -29,18 +29,24 @@ $con->close();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="sgit tylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <title>tabla de proyectos</title>
 </head>
 
 <body>
-    <div class="container">
 
+    <section class="hero is-link">
+        <div class="hero-body has-text-centered">
+            <p class="title">
+                Formulario de registro de usuarios
+            </p>
+        </div>
+    </section>
 
+    <div class="container mt-5 mb-5">
         <div class="columns">
-            <div class="column"></div>
-            <div class="column is-half">
-                <h1 class="title">Formulario de registro de usuarios</h1>
+            <div class="column is-1"></div>
+            <div class="column is-10">
                 <?php
                 if (isset($notif)) {
                 ?>
@@ -51,42 +57,132 @@ $con->close();
                 <?php
                 }
                 ?>
-                <div class="box">
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                        <input class="input is-primary" type="text" placeholder="Nombre" name="name" required>
-                        <input class="input is-primary" type="text" placeholder="Ocupación" name="position" required>
-                        <input class="input is-primary" type="text" placeholder="location" name="location" required>
-                        <input class="input is-primary" type="text" placeholder="industry" name="industry" required>
-                        <input class="input is-primary" type="text" placeholder="income" name="income" required>
-                        <input class="input is-primary" type="text" placeholder="age" name="age" required>
-                        <input class="input is-primary" type="text" placeholder="marital_status" name="marital_status" required>
-                        <input class="input is-primary" type="text" placeholder="goals" name="goals" required>
-                        <input class="input is-primary" type="text" placeholder="needs" name="needs" required>
-                        <input class="input is-primary" type="text" placeholder="interests" name="interests" required>
-                        <input class="input is-primary" type="text" placeholder="fears" name="fears" required>
-                        <input class="input is-primary" type="text" placeholder="story" name="story" required>
-                        <input class="input is-primary" type="text" placeholder="tools" name="tools" required>
-                        <input class="input is-primary" type="text" placeholder="social_networks" name="social_networks" required>
-                        <input class="input is-primary" type="text" placeholder="brands" name="brands" required>
-
-                        <div class="field is-grouped">
-                            <div class="control">
-                                <button class="button is-link">guardar usuario</button>
-                            </div>
-                            <div class="control">
-                                <button class="button is-link is-light">Cancelar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
-            <div class="column"></div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="box ml-6 mr-6 mb-6">
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                <div class="field">
+                    <label class="label">Nombre:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="name" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Ocupación:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="position" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Location:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="location" required>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Industry:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="industry" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Income:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="income" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Age:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="age" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Marital status:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="marital_status" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Goals:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="goals" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Needs:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="needs" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Interests:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="interests" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Fears:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="fears" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Story:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="story" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Tools:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="tools" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Social networks:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="social_networks" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Brands:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="text" name="brands" required>
+                    </div>
+                </div>
+
+
+                <div class="field is-grouped mt-5">
+                    <div class="control">
+                        <button class="button is-link">Guardar registro</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
 </body>
-<<<<<<< HEAD
-</html>
-=======
 
 </html>
->>>>>>> f1dd17bbb3c2910900a621a5098838219c33a9b6
