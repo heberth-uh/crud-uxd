@@ -1,8 +1,5 @@
 <?php
-    $servidor="localhost";
-    $username='root';
-    $password='';
-    $database="ejemplo";
+include "conn.php";
 
     if (isset($_GET['id'])){
         $idProyecto=$_GET['id'];
@@ -13,7 +10,7 @@
     //conexión a mysql
     $con=new mysqli($servidor, $username, $password, $database);
     //consulta mysql
-    $consulta="delete from usuarios where id=$idProyecto";
+    $consulta="delete from persona where id=$idProyecto";
     //ejecutar consulta
     if($con->query($consulta)){
         $notif='El registro se eliminó correctamente';
@@ -33,11 +30,21 @@
     <title>Perfil de usuario</title>
 </head>
 <body>
-    <div class="container">
-    <div class="notification is-primary">
-    <button class="delete"></button>
+    <div class="container" id="mensaje">
+    <div class="notification is-primary" >
+    <button class="delete" id="cerrar"></button>
         <?php echo $notif ?>
     </div>
     </div>
 </body>
+<script>
+var notif=document.getElementById('mensaje');
+     var botonCerrar=document.getElementById("cerrar");
+     botonCerrar.addEventListener('click',function(){
+     notif.style.visibility="hidden";
+     notif.style.display="none";
+     botonCerrar.parentNode.remove();
+     location.href ="create.php";
+     })
+</script>
 </html>
